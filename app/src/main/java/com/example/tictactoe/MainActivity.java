@@ -2,8 +2,9 @@ package com.example.tictactoe;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.GridLayout;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -57,9 +58,34 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     Toast.makeText(this, winner + " has won", Toast.LENGTH_SHORT).show();
+
+                    Button playAgain = findViewById(R.id.playAgainButton);
+                    playAgain.setVisibility(View.VISIBLE);
                 }
             }
         }
+    }
+
+    public void playAgain(View view){
+
+        Button playAgain = findViewById(R.id.playAgainButton);
+        playAgain.setVisibility(View.INVISIBLE);
+
+        GridLayout gridLayout = findViewById(R.id.gridLayout);
+
+        for(int i=0; i<gridLayout.getChildCount(); i++){
+
+            ImageView counter = (ImageView) gridLayout.getChildAt(i);
+            counter.setImageDrawable(null);
+        }
+
+
+        for(int i=0; i<gameState.length; i++){
+           gameState[i]=2;
+        }
+
+        isUserActive=0;
+        someoneHasWon=false;
     }
 
     @Override
