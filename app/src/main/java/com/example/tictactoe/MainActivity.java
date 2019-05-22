@@ -7,11 +7,20 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
+    boolean isUserActive;
+
     public void dropIn (View view){
         ImageView counter = (ImageView) view;
 
         counter.setTranslationX(-2000);
-        counter.setImageResource(R.drawable.green);
+        if(isUserActive) {
+            counter.setImageResource(R.drawable.green);
+            isUserActive=false;
+        }
+        else{
+            counter.setImageResource(R.drawable.red);
+            isUserActive=true;
+        }
         counter.animate().translationXBy(2000).setDuration(500);
 
     }
