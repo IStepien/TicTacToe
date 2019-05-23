@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayout;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
             {0, 4, 8}, {2, 4, 6}};
     int isUserActive = 0;
     boolean someoneHasWon;
+    MediaPlayer mediaPlayer;
 
     public void dropIn(View view) {
         ImageView counter = (ImageView) view;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Toast.makeText(this, winner + " has won", Toast.LENGTH_SHORT).show();
 
+                    mediaPlayer.start();
                     Button playAgain = findViewById(R.id.playAgainButton);
                     playAgain.setVisibility(View.VISIBLE);
                 }
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void playAgain(View view) {
-
+        mediaPlayer.pause();
         Button playAgain = findViewById(R.id.playAgainButton);
         playAgain.setVisibility(View.INVISIBLE);
 
@@ -110,5 +113,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mediaPlayer = MediaPlayer.create(this, R.raw.hyena_laugh);
     }
 }
